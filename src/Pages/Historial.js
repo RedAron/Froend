@@ -52,9 +52,10 @@ class Historial extends Component{
 
    return( 
 
-  <div>
+  <div className="container">
+      <div className="row">
 
-   <table class="table table-bordered">
+   <table className="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -89,6 +90,7 @@ class Historial extends Component{
     })}
   </tbody>
 </table>
+</div>
 </div>
 
 

@@ -4,6 +4,8 @@ import Login from '../Pages/Login';
 import Home from '../Pages/Home';
 import Historial from '../Pages/Historial';
 import '../css/Login.css';
+import { Link } from 'react-router-dom';
+
 
 function Routes() {
   return (
@@ -13,11 +15,29 @@ function Routes() {
       <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/default.png"></img>
       </div>
       <div>
+
+        
   <a class="navbar-brand text-center" href="#" >Universidad del <span>Magdalena</span></a>
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <Link class="nav-link" to="/"href="#">Login </Link>
+      </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/Home" href="#">Home</Link>
+      </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/historial"href="#">Hisotiral</Link>
+      </li>
+    </ul>
+  </div>
+      
+      
+  
   
 </nav>
 

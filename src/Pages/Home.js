@@ -120,9 +120,9 @@ function Home() {
     <div className="containerSegundario">
     <div className="form-group">  
 
-    
-   
+ 
   <div className="col-sm">
+
   <input class="form-check-input" onChange={(t) => boxe(t.target.value)}    type="radio"  value="Planeacion" name="flexRadioDefault"  id="Planeación"/>
   <label class="form-check-label" for="flexRadioDefault1" >
   Planeación 
@@ -137,6 +137,7 @@ function Home() {
   Admisiones
   </label>
   </div>
+  
  
   
 
@@ -148,9 +149,10 @@ function Home() {
         </div>
         </div>
         
-        
+
    
         </div>
+        
 
         
 
