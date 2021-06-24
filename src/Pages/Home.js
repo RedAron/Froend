@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import '../css/Login.css';
 import '../css/Home.css';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 import XLSX from 'xlsx';
 
@@ -17,7 +18,27 @@ const instance = axios.create({
     }
 });
 
+
+
 function Home() {
+
+    //variables de estado
+
+    //const [response,setResponse]= useState(null)
+    const [loading,setLoading]= useState(false)
+    const [hasError, setHasError]= useState(false)
+    
+
+    //control modal
+
+    const [modal,setModal]= useState(null);
+
+   
+
+
+
+
+
 
     const [archivos, setArchivos] = useState(null);
 
@@ -41,6 +62,8 @@ function Home() {
     
     const insertarArchivo = async () => {
         let f = new FormData();
+        setLoading(true)
+        setModal(true)
         console.log(box)
         f.append("tipo",box)
         f.append("descripcion","primeras pruebas")
@@ -52,16 +75,16 @@ function Home() {
         await instance.post("archivo/",
             f,
         ).then(response => {
-               //Cookies.set('data', respuesta.data, {path: "/"})
-
-                //console.log(Cookies.get('data'))
-              alert("cargado correctamente");
+               setLoading(false)
+              //alert("cargado correctamente");
               
-              refreshPage()
+              
               
         })
         .catch(error => {
-           // alert("cargado correctamente");
+            setHasError(true)
+            setLoading(false)
+           
             console.log(error)
         })
     }
@@ -99,7 +122,7 @@ function Home() {
              
                 }
                 if(permitida==0){
-                    alert("Comprueba la extension de los archivos a subir \n Solo pueden subir archivos con extensiones: "+ extension_permitidas.join());
+                    //alert("Comprueba la extension de los archivos a subir \n Solo pueden subir archivos con extensiones: "+ extension_permitidas.join());
     
                 }else{
                     //alert("todo correcto")
@@ -109,52 +132,64 @@ function Home() {
             }
         
             
-        }
-
-        
-   
-        
-
+        }     
     return (
-        <div className="Home">
-    <div className="containerSegundario">
-    <div className="form-group">  
 
- 
-  <div className="col-sm">
-
-  <input class="form-check-input" onChange={(t) => boxe(t.target.value)}    type="radio"  value="Planeacion" name="flexRadioDefault"  id="Planeación"/>
-  <label class="form-check-label" for="flexRadioDefault1" >
-  Planeación 
-  </label>
-  </div>
+        <React.Fragment>
+        <div className="container">
+            <div className="row">  
+                <div className="card">
+                    <div className="card-body">
+                        <div className="align-items-end">
+                        <div className="col-sm">
+                            
+                        <input class="form-check-input" onChange={(t) => boxe(t.target.value)}    type="radio"  value="Planeacion" name="flexRadioDefault"  id="Planeación"/>
+                        <label class="form-check-label" for="flexRadioDefault1" >Planeación </label>
+                        
+                        </div>
+                        <div className="col-sm">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
+                        <label class="form-check-label" for="flexRadioDefault1">Admisiones</label>
+                        </div>
+                        <div className="col-sm">
+                        <input type="file" name="files" className="inputfile" multiple onChange={(e) => subirArchivo(e.target.files)}/>
+                        
+                        
+                        
+                    </div>
+                        </div>
+                    
   
-  
-  
-  <div className="col-sm">
-  <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
-  <label class="form-check-label" for="flexRadioDefault1">
-  Admisiones
-  </label>
-  </div>
-  
- 
-  
-
-            <br/>
-            <input type="file" name="files" multiple onChange={(e) => subirArchivo(e.target.files)}/>
+            </div>
             
-            <br/> <br/>
-            <button className="btn btn-primary" onClick={() => insertarArchivo()}>Insertar Archivo</button>
-        </div>
+           
+        
+            
         </div>
         
-
+        </div>
+        <br/>
+        <div className="align-self-center">
+                        <button className="btn btn-primary"  onClick={() => insertarArchivo()}>Insertar Archivo</button>
+                    </div>
    
         </div>
+        <Modal isOpen={modal}>
+        <ModalHeader>Información</ModalHeader>
+        <ModalBody>
+          {loading ? <div className="spinner-border text-primary" role="status"></div>: (hasError? <div>Ocurrio un error</div>
+          :
+          (<div className="alert alert-primary">Cargado Correctamente</div>))}
+        </ModalBody>
+        <ModalFooter>
+        <Button color="primary" onClick={refreshPage}>Cerrar</Button>
+        </ModalFooter>
+
+ 
+  </Modal>
         
 
-        
+        </React.Fragment>
 
        
 

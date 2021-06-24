@@ -45,6 +45,7 @@ function Routes() {
       <Route exact path="/" component={Login} />
       <Route exact path="/Home" component={Home} />
       <Route exact path="/Historial" component={Historial}/>
+  
       
     </Switch>
    
