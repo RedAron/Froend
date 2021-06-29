@@ -32,6 +32,11 @@ function Home() {
     //control modal
 
     const [modal,setModal]= useState(null);
+    
+
+
+    
+    const [activadobutton,setButton]=useState(false);
 
    
 
@@ -47,6 +52,7 @@ function Home() {
     const subirArchivo = e => {
         setArchivos(e);
         comprueba_extension(e);
+        setButton(true);
 
     }
     const refreshPage = ()=>{
@@ -144,17 +150,17 @@ function Home() {
                         <div className="col-sm">
                             
                         <input class="form-check-input" onChange={(t) => boxe(t.target.value)}    type="radio"  value="Planeacion" name="flexRadioDefault"  id="Planeación"/>
-                        <label class="form-check-label" for="flexRadioDefault1" >Planeación </label>
+                        <label class="form-check-label" for="flexRadioDefault1" required>Planeación </label>
                         
                         </div>
                         <div className="col-sm">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
-                        <label class="form-check-label" for="flexRadioDefault1">Admisiones</label>
+                        <label class="form-check-label" for="flexRadioDefault1" required>Admisiones</label > 
                         </div>
                         <div className="col-sm">
-                        <input type="file" name="files" className="inputfile" multiple onChange={(e) => subirArchivo(e.target.files)}/>
+                        <input type="file" name="files"  className="inputfile" multiple onChange={(e) => subirArchivo(e.target.files)}/>
                         
-                        
+                    
                         
                     </div>
                         </div>
@@ -170,7 +176,7 @@ function Home() {
         </div>
         <br/>
         <div className="align-self-center">
-                        <button className="btn btn-primary"  onClick={() => insertarArchivo()}>Insertar Archivo</button>
+                        <button className="btn btn-primary" disabled={!activadobutton} onClick={() => insertarArchivo()}>Insertar Archivo</button>
                     </div>
    
         </div>
@@ -182,11 +188,19 @@ function Home() {
           (<div className="alert alert-primary">Cargado Correctamente</div>))}
         </ModalBody>
         <ModalFooter>
-        <Button color="primary" onClick={refreshPage}>Cerrar</Button>
+        <Button color="primary" disabled={loading} onClick={refreshPage}>Cerrar</Button>
         </ModalFooter>
+        </Modal>
 
- 
-  </Modal>
+        <Modal >
+        <ModalHeader>Comentario</ModalHeader>
+        <ModalBody>
+         
+        </ModalBody>
+        <ModalFooter>
+        <Button color="primary" disabled={loading} onClick={refreshPage}>Cerrar</Button>
+        </ModalFooter>
+        </Modal>
         
 
         </React.Fragment>

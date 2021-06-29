@@ -3,9 +3,9 @@ import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import Login from '../Pages/Login';
 import Home from '../Pages/Home';
 import Historial from '../Pages/Historial';
+import Plataforma from '../Pages/Plataforma';
 import '../css/Login.css';
 import { Link } from 'react-router-dom';
-
 
 function Routes() {
   return (
@@ -45,6 +45,9 @@ function Routes() {
       <Route exact path="/" component={Login} />
       <Route exact path="/Home" component={Home} />
       <Route exact path="/Historial" component={Historial}/>
+      <Route exact path="/Plataforma" component={Plataforma}/>
+
+
   
       
     </Switch>
