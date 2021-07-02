@@ -32,22 +32,24 @@ function Home() {
     //control modal
 
     const [modal,setModal]= useState(null);
-    
-
-
+    const [modal2,setModel2]=useState(null);
     
     const [activadobutton,setButton]=useState(false);
-
-   
-
-
-
-
-
 
     const [archivos, setArchivos] = useState(null);
 
     const [box,setbox]=useState(null);
+
+    const [year,setyear]=useState(null);
+
+    const [comentario,setComentario]=useState("");
+
+
+
+    const comen =e=>{
+        setComentario(e);
+        console.log(comentario);
+    }
 
     const subirArchivo = e => {
         setArchivos(e);
@@ -64,15 +66,28 @@ function Home() {
             setbox(e)
         }
          
+        const inyerar= e=>{
+            setyear(e);
+            console.log(year)
+            
+        }
+
+        function lanzarModal(){
+
+            setModal(false);
+            setModel2(true);
+
+        }
 
     
     const insertarArchivo = async () => {
         let f = new FormData();
-        setLoading(true)
-        setModal(true)
-        console.log(box)
-        f.append("tipo",box)
-        f.append("descripcion","primeras pruebas")
+        setLoading(true);
+        setModal(true);
+        f.append("tipo",box);
+        f.append("year",year);
+        f.append("descripcion",comentario);
+        
 
         for(let index=0; index<archivos.length;index++){
             f.append("new_file",archivos[0]);
@@ -157,30 +172,26 @@ function Home() {
                         <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
                         <label class="form-check-label" for="flexRadioDefault1" required>Admisiones</label > 
                         </div>
+                        <label for="fecha">año del archivo</label>
                         <div className="col-sm">
-                        <input type="file" name="files"  className="inputfile" multiple onChange={(e) => subirArchivo(e.target.files)}/>
-                        
-                    
-                        
+       
+        <input type="year" name="fecha" id="fecha" class="form-control" onChange={(s) => inyerar(s.target.value)} />
+                 </div>
+                        <div className="col-sm">
+                        <input type="file" name="files"  className="inputfile"  onChange={(e) => subirArchivo(e.target.files)}/>
                     </div>
-                        </div>
-                    
-  
-            </div>
-            
-           
-        
-            
+                    </div>
+            </div>   
         </div>
         
         </div>
         <br/>
         <div className="align-self-center">
-                        <button className="btn btn-primary" disabled={!activadobutton} onClick={() => insertarArchivo()}>Insertar Archivo</button>
+        <button className="btn btn-primary" disabled={!activadobutton} onClick={() => insertarArchivo()}>Insertar Archivo</button>
                     </div>
    
         </div>
-        <Modal isOpen={modal}>
+        <Modal isOpen={modal2}>
         <ModalHeader>Información</ModalHeader>
         <ModalBody>
           {loading ? <div className="spinner-border text-primary" role="status"></div>: (hasError? <div>Ocurrio un error</div>
@@ -192,18 +203,22 @@ function Home() {
         </ModalFooter>
         </Modal>
 
-        <Modal >
+
+
+
+
+        <Modal isOpen={modal}>
         <ModalHeader>Comentario</ModalHeader>
         <ModalBody>
-         
+        <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => comen(e.target.value)} ></textarea>
         </ModalBody>
         <ModalFooter>
-        <Button color="primary" disabled={loading} onClick={refreshPage}>Cerrar</Button>
+        <Button color="primary" onClick={() => lanzarModal()} >Siguiente</Button>
         </ModalFooter>
         </Modal>
-        
-
         </React.Fragment>
+
+        
 
        
 

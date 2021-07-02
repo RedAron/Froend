@@ -1,97 +1,114 @@
 import React, {Component, useState} from 'react';
 import axios from "axios";
+import {useEffect} from 'react';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import DataTable from 'react-data-table-component';
+
 
 const url="http://arc123.xyz:8000/archivo/";
 
-class Historial extends Component{
+function Hisotiral(){
+    const [usuarios, setUsuarios]= useState([]);
+    const [tablaUsuarios, setTablaUsuarios]= useState([]);
+    const [busqueda, setBusqueda]= useState("");
 
-
-
-    state={
-        data:[],
-        hasError:false,
-        loading:false,
-    }
-
-    peticionGet=()=>{
-        this.setState({loading: true})
+    const peticionGet=async()=>{
+        
 
         axios.get(url).then(response=>{
-            this.setState({loading: false})
-            console.log(response.data)
-            this.setState({data: response.data});
+            setUsuarios(response.data);
+    setTablaUsuarios(response.data);
         })
         .catch(err=>{
-            console.log(err)
-            this.setState({loading: false})
-            this.setState({ hasError: true })
+            console.log(err);
+
         })
 
         
     }
 
-    componentDidMount(){
-        this.peticionGet();
+    const handleChange=e=>{
+        setBusqueda(e.target.value);
+        filtrar(e.target.value);
+      }
 
-    }
+      const filtrar=(terminoBusqueda)=>{
+        var resultadosBusqueda=tablaUsuarios.filter((elemento)=>{
+          if( elemento.tipo.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+          ){
+            return elemento;
+          }
+        });
+        setUsuarios(resultadosBusqueda);
+      }
+      useEffect(()=>{
+        peticionGet();
+        },[])
 
     
   
-    render(){
-
-    
-
-
-
-
-    
 
    return( 
 
   <div className="container">
       <div className="row">
+      
+      <input class="form-control mr-sm-2" type="search" placeholder="Search"  value={busqueda}  onChange={handleChange} aria-label="Search"/>
+      
+ 
+    
+
 
    <table className="table table-striped">
+  
+  
+  
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">año</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Tipo</th>
       <th scope="col">Archivo</th>
       <th scope="col">fecha creacion</th>
       <th scope="col">estado</th>
+      
     </tr>
   </thead>
   <tbody>
     
     {
-    this.state.loading ? <div>loading...</div>:
-    this.state.hasError ? <div>Error occured fetching data</div>:
+    
 
     
-    this.state.data.map(archivo=>{
+    usuarios && usuarios.map(usuarios=>{
         return(
             <tr>
-            <td>{archivo.id}</td>
-            <td>{archivo.descripcion}</td>
-            <td>{archivo.tipo}</td>
-            <td>{archivo.new_file}</td>
-            <td>{archivo.fecha_creacion}</td>
-            <td>{archivo.estado}</td>
+            <td>{usuarios.id}</td>
+            <td>{usuarios.year}</td>
+            <td>{usuarios.descripcion}</td>
+            <td>{usuarios.tipo}</td>
+            <td>{usuarios.new_file}</td>
+            <td>{usuarios.fecha_creacion}</td>
+            <td>{usuarios.estado}</td>
 
             </tr>
 
            
         )
     })}
+
   </tbody>
 </table>
+
 </div>
 </div>
+
+
 
 
       
@@ -101,9 +118,9 @@ class Historial extends Component{
     
     );
 
-    }
+    
 
 
 }
 
-export default Historial;
+export default Hisotiral;
