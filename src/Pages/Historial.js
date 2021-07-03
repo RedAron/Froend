@@ -16,15 +16,27 @@ function Hisotiral(){
     const [tablaUsuarios, setTablaUsuarios]= useState([]);
     const [busqueda, setBusqueda]= useState("");
 
+
+    //variables de error y loading
+    
+    const [loading,setLoading]= useState(false)
+    const [hasError, setHasError]= useState(false)
+    
+
+
     const peticionGet=async()=>{
+      setLoading(true);
         
 
         axios.get(url).then(response=>{
+          setLoading(false);
             setUsuarios(response.data);
     setTablaUsuarios(response.data);
         })
         .catch(err=>{
             console.log(err);
+            setHasError(true);
+            setLoading(false);
 
         })
 
@@ -39,6 +51,7 @@ function Hisotiral(){
       const filtrar=(terminoBusqueda)=>{
         var resultadosBusqueda=tablaUsuarios.filter((elemento)=>{
           if( elemento.tipo.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+          || elemento.year.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
           ){
             return elemento;
           }
@@ -81,8 +94,8 @@ function Hisotiral(){
   </thead>
   <tbody>
     
-    {
-    
+    {loading ? <div className="spinner-border text-primary" role="status"></div>: hasError? <div>Ocurrio un error</div>:
+   
 
     
     usuarios && usuarios.map(usuarios=>{
