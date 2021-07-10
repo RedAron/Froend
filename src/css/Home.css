@@ -12,7 +12,7 @@
      float: inherit;
  }
 
- .row{
+ .row,.card{
      margin-top: 5%;
  }
 
@@ -22,12 +22,5 @@
 
     margin-right:auto
  }
-.inputfile{
-    ancho : 0.1px ;
-	altura : 0.1px ;
-	opacidad : 0 ;
-	desbordamiento : oculto;
-	posición : absoluta;
-	
-}
+
  

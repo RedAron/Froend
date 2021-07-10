@@ -86,9 +86,9 @@ function Hisotiral(){
       <th scope="col">año</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Tipo</th>
-      <th scope="col">Archivo</th>
       <th scope="col">fecha creacion</th>
       <th scope="col">estado</th>
+      <th scope="col">Archivo</th>
       
     </tr>
   </thead>
@@ -105,9 +105,9 @@ function Hisotiral(){
             <td>{usuarios.year}</td>
             <td>{usuarios.descripcion}</td>
             <td>{usuarios.tipo}</td>
-            <td>{usuarios.new_file}</td>
             <td>{usuarios.fecha_creacion}</td>
             <td>{usuarios.estado}</td>
+            <td><a href={usuarios.new_file}  class="btn btn-primary" >Descargar</a></td>
 
             </tr>
 

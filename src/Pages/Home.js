@@ -158,10 +158,11 @@ function Home() {
 
         <React.Fragment>
         <div className="container">
-            <div className="row">  
+           
                 <div className="card">
                     <div className="card-body">
                         <div className="align-items-end">
+                            
                         <div className="col-sm">
                             
                         <input class="form-check-input" onChange={(t) => boxe(t.target.value)}    type="radio"  value="Planeacion" name="flexRadioDefault"  id="Planeación"/>
@@ -172,7 +173,8 @@ function Home() {
                         <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
                         <label class="form-check-label" for="flexRadioDefault1" required>Admisiones</label > 
                         </div>
-                        <label for="fecha">año del archivo</label>
+                        
+                        <label for="floatingTextarea">año del archivo</label>
                         <div className="col-sm">
        
         <input type="year" name="fecha" id="fecha" class="form-control" onChange={(s) => inyerar(s.target.value)} />
@@ -181,7 +183,7 @@ function Home() {
                         <input type="file" name="files"  className="inputfile"  onChange={(e) => subirArchivo(e.target.files)}/>
                     </div>
                     </div>
-            </div>   
+          
         </div>
         
         </div>

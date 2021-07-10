@@ -14,7 +14,7 @@ class Login extends Component {
     state = {
         form: {
             username: '',
-            password: ''
+            password: '',
         }
 
     }
@@ -32,10 +32,10 @@ class Login extends Component {
     }
 
     iniciarsesion = async () => {
-        await axios.post(baseurl, {username: this.state.form.username, password: this.state.form.password})
+       const data=  await axios.post(baseurl, {username: this.state.form.username, password: this.state.form.password})
             .then(response => {
-                console.log(response)
-                return response.data
+                console.log(response.status)
+                
 
 
             })
@@ -57,7 +57,8 @@ class Login extends Component {
                 }
             })
             .catch(error => {
-                console.log(error.value);
+                console.log(error.status);
+                console.log("hola");
             })
 
     }
