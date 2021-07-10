@@ -8,13 +8,21 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import XLSX from 'xlsx';
 
 
+const cookie = new Cookies();
+
+console.log(cookie.get("token"))
+let token= "Token "+ cookie.get("token")
+console.log(token)
+
+
 
 const instance = axios.create({
     baseURL: 'http://arc123.xyz:8000/',
     timeout: 1000000,
     headers: {
         'content-type': 'multipart/form-data/',
-        
+        'Authorization': `${token}`,
+
     }
 });
 
@@ -42,13 +50,12 @@ function Home() {
 
     const [year,setyear]=useState(null);
 
-    const [comentario,setComentario]=useState("");
+    const [comentario,setComentario]=useState(null);
 
 
 
     const comen =e=>{
         setComentario(e);
-        console.log(comentario);
     }
 
     const subirArchivo = e => {
@@ -75,27 +82,31 @@ function Home() {
         function lanzarModal(){
 
             setModal(false);
+            f.append("descripcion",comentario);
             setModel2(true);
 
         }
-
+        var f = new FormData();
     
     const insertarArchivo = async () => {
-        let f = new FormData();
+        
         setLoading(true);
         setModal(true);
         f.append("tipo",box);
         f.append("year",year);
-        f.append("descripcion",comentario);
+        console.log(f.value)
         
 
         for(let index=0; index<archivos.length;index++){
             f.append("new_file",archivos[0]);
 
         }
+        
         await instance.post("archivo/",
             f,
         ).then(response => {
+        
+
                setLoading(false)
               //alert("cargado correctamente");
               
@@ -210,7 +221,7 @@ function Home() {
 
 
         <Modal isOpen={modal}>
-        <ModalHeader>Comentario</ModalHeader>
+        <ModalHeader>Descripcion</ModalHeader>
         <ModalBody>
         <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => comen(e.target.value)} ></textarea>
         </ModalBody>

@@ -24,9 +24,6 @@ function Routes() {
   </button>
       <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item ">
-        <Link class="nav-link" to="/"href="#">Login </Link>
-      </li>
       <li class="nav-item">
         <Link class="nav-link" to="/Home" href="#">Home</Link>
       </li>
@@ -46,10 +43,6 @@ function Routes() {
       <Route exact path="/Home" component={Home} />
       <Route exact path="/Historial" component={Historial}/>
       <Route exact path="/Plataforma" component={Plataforma}/>
-
-
-  
-      
     </Switch>
    
         

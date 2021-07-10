@@ -1,15 +1,32 @@
 import React, {Component, useState} from 'react';
 import axios from "axios";
 import {useEffect} from 'react';
-
+import Cookies from 'universal-cookie';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import DataTable from 'react-data-table-component';
 
+const cookie = new Cookies();
 
-const url="http://arc123.xyz:8000/archivo/";
+let token= "Token "+ cookie.get("token")
+
+
+
+
+const instance = axios.create({
+    baseURL: 'http://arc123.xyz:8000/',
+    timeout: 1000000,
+    headers: {
+        'content-type': 'multipart/form-data/',
+        'Authorization': `${token}`,
+
+    }
+});
+
+
+
 
 function Hisotiral(){
     const [usuarios, setUsuarios]= useState([]);
@@ -28,7 +45,7 @@ function Hisotiral(){
       setLoading(true);
         
 
-        axios.get(url).then(response=>{
+        await instance.get("archivo/").then(response=>{
           setLoading(false);
             setUsuarios(response.data);
     setTablaUsuarios(response.data);

@@ -35,29 +35,31 @@ class Login extends Component {
        const data=  await axios.post(baseurl, {username: this.state.form.username, password: this.state.form.password})
             .then(response => {
                 console.log(response.status)
-                
-
-
-            })
-            .then(response => {
-                if (response.length > 0) {
-                    var respuesta = response[0];
-
-                    
-                    //Cookies.set('data', respuesta.data, {path: "/"})
-
-                    //console.log(Cookies.get('data'))
+                if(response.data=="usuario invalido"){
+                    alert("usuario invalido")
+                }else{
                     alert("bienvenido");
 
                     window.location.href = "./home";
 
+                    cookies.set('token',response.data,{path:"/"});
 
-                } else {
-                    alert("el usuario o la contraseña no coincide")
+
+
+
+
+
+
+
+
+
+                    
                 }
+            
             })
+            
             .catch(error => {
-                console.log(error.status);
+                console.log(error);
                 console.log("hola");
             })
 
