@@ -185,6 +185,10 @@ function Home() {
                         <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Admisiones" id="Admisiones"/>
                         <label class="form-check-label" for="flexRadioDefault1" required>Admisiones</label > 
                         </div>
+                        <div className="col-sm">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"  onChange={(s) => boxe(s.target.value)}  value="Talento" id="Talento"/>
+                        <label class="form-check-label" for="flexRadioDefault1" required>Talento</label > 
+                        </div>
                         
                         <label for="floatingTextarea">año del archivo</label>
                         <div className="col-sm">

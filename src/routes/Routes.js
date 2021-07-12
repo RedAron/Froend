@@ -6,6 +6,14 @@ import Historial from '../Pages/Historial';
 import Plataforma from '../Pages/Plataforma';
 import '../css/Login.css';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookie = new Cookies();
+
+function Cerrar(){
+  cookie.remove("token",{path:"/"})
+  window.location.href="./";
+}
 
 function Routes() {
   return (
@@ -35,6 +43,8 @@ function Routes() {
       </li>
       
     </ul>
+
+   
   </div>
       
       
@@ -49,6 +59,9 @@ function Routes() {
       <Route exact path="/Plataforma" component={Plataforma}/>
     </Switch>
    
+
+
+   
         
         
 
@@ -57,6 +70,10 @@ function Routes() {
         
         
     <footer className=" text-center text-lg-start foter">
+    {
+        cookie.get("token")? <button type="button" onClick={Cerrar} class="btn btn-danger">Cerrar Sesion </button> : <div></div>
+
+    }
 
 <div class="text-center p-3">
   <h4>Información de contacto</h4>

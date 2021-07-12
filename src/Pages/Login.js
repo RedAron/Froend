@@ -48,17 +48,7 @@ class Login extends Component {
                     window.location.href = "./home";
 
                     cookies.set('token',response.data,{path:"/"});
-
-
-
-
-
-
-
-
-
-
-                    
+   
                 }
             
             })
