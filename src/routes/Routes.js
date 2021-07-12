@@ -30,6 +30,10 @@ function Routes() {
       <li class="nav-item">
         <Link class="nav-link" to="/historial"href="#">Hisotiral</Link>
       </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/Plataforma"href="#">Plataforma</Link>
+      </li>
+      
     </ul>
   </div>
       
@@ -49,7 +53,7 @@ function Routes() {
         
 
         
-        
+    
         
         
     <footer className=" text-center text-lg-start foter">

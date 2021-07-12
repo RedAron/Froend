@@ -18,6 +18,11 @@ class Login extends Component {
         }
 
     }
+    componentDidMount(){
+        if(cookies.get('token')){
+            window.location.href = "./home";
+        }
+    }
 
 
     headChange = async e => {

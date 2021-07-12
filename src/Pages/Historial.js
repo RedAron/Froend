@@ -29,6 +29,8 @@ const instance = axios.create({
 
 
 function Hisotiral(){
+
+    
     const [usuarios, setUsuarios]= useState([]);
     const [tablaUsuarios, setTablaUsuarios]= useState([]);
     const [busqueda, setBusqueda]= useState("");

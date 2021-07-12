@@ -50,9 +50,9 @@ function Home() {
 
     const [year,setyear]=useState(null);
 
-    const [comentario,setComentario]=useState(null);
+    const [comentario,setComentario]=useState("");
 
-
+    
 
     const comen =e=>{
         setComentario(e);
@@ -79,22 +79,23 @@ function Home() {
             
         }
 
-        function lanzarModal(){
-
-            setModal(false);
-            f.append("descripcion",comentario);
-            setModel2(true);
+        function lanzarModal2(){
+            setModal(true);
+           
 
         }
-        var f = new FormData();
+        
     
     const insertarArchivo = async () => {
-        
+        let f = new FormData();
         setLoading(true);
-        setModal(true);
+        setModal(false);
+        setModel2(true);
+       
         f.append("tipo",box);
         f.append("year",year);
-        console.log(f.value)
+        f.append("descripcion",comentario);
+       
         
 
         for(let index=0; index<archivos.length;index++){
@@ -200,7 +201,7 @@ function Home() {
         </div>
         <br/>
         <div className="align-self-center">
-        <button className="btn btn-primary" disabled={!activadobutton} onClick={() => insertarArchivo()}>Insertar Archivo</button>
+        <button className="btn btn-primary" disabled={!activadobutton} onClick={() => lanzarModal2()}>Insertar Archivo</button>
                     </div>
    
         </div>
@@ -226,7 +227,7 @@ function Home() {
         <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => comen(e.target.value)} ></textarea>
         </ModalBody>
         <ModalFooter>
-        <Button color="primary" onClick={() => lanzarModal()} >Siguiente</Button>
+        <Button color="primary" onClick={() => insertarArchivo()} >Siguiente</Button>
         </ModalFooter>
         </Modal>
         </React.Fragment>
