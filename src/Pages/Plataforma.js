@@ -1,6 +1,20 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState,useEffect} from 'react';
+import Cookies from 'universal-cookie';
 
+
+const cookie = new Cookies();
 class Plataforma extends Component{
+
+    
+
+    componentDidMount(){
+        if(!cookie.get('token')){
+            window.location.href = "./home";
+        }
+    }
+
+
+   
     render(){
         return(
             <div class="container">

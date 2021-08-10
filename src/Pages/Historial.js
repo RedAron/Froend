@@ -40,6 +40,14 @@ function Hisotiral(){
     
     const [loading,setLoading]= useState(false)
     const [hasError, setHasError]= useState(false)
+
+    useEffect(()=>{
+      if(!cookie.get('token')){
+        window.location.href = "./";
+        console.log("hola")
+    }
+
+    });
     
 
 

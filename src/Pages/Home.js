@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState,useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import '../css/Login.css';
@@ -29,6 +29,14 @@ const instance = axios.create({
 
 
 function Home() {
+
+    useEffect(()=>{
+        if(!cookie.get('token')){
+          window.location.href = "./";
+          console.log("hola")
+      }
+  
+      });
 
     //variables de estado
 
