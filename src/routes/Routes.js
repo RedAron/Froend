@@ -36,7 +36,7 @@ function Routes() {
         <Link class="nav-link" to="/Home" href="#">Home</Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/historial"href="#">Hisotiral</Link>
+        <Link class="nav-link" to="/historial"href="#">Historial</Link>
       </li>
       <li class="nav-item">
         <Link class="nav-link" to="/Plataforma"href="#">Plataforma</Link>
