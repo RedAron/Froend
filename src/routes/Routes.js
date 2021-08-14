@@ -2,6 +2,8 @@ import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom'
 import Login from '../Pages/Login';
 import Home from '../Pages/Home';
+import Home2 from '../Pages/Home2';
+
 import Historial from '../Pages/Historial';
 import Plataforma from '../Pages/Plataforma';
 import '../css/Login.css';
@@ -30,6 +32,10 @@ function Routes() {
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  {
+     cookie.get("token")? 
+
+  
       <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -46,6 +52,8 @@ function Routes() {
 
    
   </div>
+  :<div></div>
+}
       
       
   
@@ -53,10 +61,12 @@ function Routes() {
 </nav>
 
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={Home2} />
       <Route exact path="/Home" component={Home} />
       <Route exact path="/Historial" component={Historial}/>
       <Route exact path="/Plataforma" component={Plataforma}/>
+      <Route exact path="/Login" component={Login} />
+      
     </Switch>
    
 

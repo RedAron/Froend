@@ -7,11 +7,7 @@ class Plataforma extends Component{
 
     
 
-    componentDidMount(){
-        if(!cookie.get('token')){
-            window.location.href = "./home";
-        }
-    }
+   
 
 
    
