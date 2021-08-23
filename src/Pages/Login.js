@@ -40,7 +40,7 @@ class Login extends Component {
        const data=  await axios.post(baseurl, {username: this.state.form.username, password: this.state.form.password})
             .then(response => {
                 console.log(response.status)
-                if(response.data=="usuario invalido"){
+                if(response.data=="usuario invalido" | "contraseña invalida"){
                     alert("usuario invalido")
                 }else{
                     alert("bienvenido");
@@ -120,7 +120,7 @@ class Login extends Component {
                             onChange={this.headChange}
                         />
                         <br/>
-                        <label>contraseña</label>
+                        <label>Contraseña</label>
                         <input
                             type="password"
                             className="form-control"
@@ -128,7 +128,7 @@ class Login extends Component {
                             onChange={this.headChange}
                         />
                         <br/>
-                        <button onClick={() => this.iniciarsesion()} className="btn btn-primary">iniciar sesion</button>
+                        <button onClick={() => this.iniciarsesion()} className="btn btn-primary">Iniciar sesión</button>
 
                     </div>
                 </div>

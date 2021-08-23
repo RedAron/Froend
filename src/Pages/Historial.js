@@ -12,6 +12,8 @@ const cookie = new Cookies();
 
 let token= "Token "+ cookie.get("token")
 
+console.log(cookie.get("token"))
+
 
 
 
@@ -41,13 +43,7 @@ function Hisotiral(){
     const [loading,setLoading]= useState(false)
     const [hasError, setHasError]= useState(false)
 
-    useEffect(()=>{
-      if(!cookie.get('token')){
-        window.location.href = "./";
-        console.log("hola")
-    }
-
-    });
+   
     
 
 
@@ -111,10 +107,10 @@ function Hisotiral(){
     <tr>
       <th scope="col">ID</th>
       <th scope="col">año</th>
-      <th scope="col">Descripcion</th>
+      <th scope="col">Descripción</th>
       <th scope="col">Tipo</th>
-      <th scope="col">fecha creacion</th>
-      <th scope="col">estado</th>
+      <th scope="col">Fecha creación</th>
+      <th scope="col">Estado</th>
       <th scope="col">Archivo</th>
       
     </tr>

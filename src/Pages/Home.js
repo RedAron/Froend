@@ -234,7 +234,7 @@ function Home() {
 
 
         <Modal isOpen={modal}>
-        <ModalHeader>Descripcion</ModalHeader>
+        <ModalHeader>Descripción</ModalHeader>
         <ModalBody>
         <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => comen(e.target.value)} ></textarea>
         </ModalBody>
