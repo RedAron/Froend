@@ -40,9 +40,12 @@ class Login extends Component {
        const data=  await axios.post(baseurl, {username: this.state.form.username, password: this.state.form.password})
             .then(response => {
                 console.log(response.status)
-                if(response.data=="usuario invalido" | "contraseña invalida"){
+                if(response.data=="contraseña invalida"){
                     alert("usuario invalido")
-                }else{
+               }else if (response.data=="usuario invalido"){
+                alert("usuario invalido")
+
+               }else{
                     alert("bienvenido");
 
                     window.location.href = "./home";
