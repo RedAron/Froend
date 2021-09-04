@@ -47,16 +47,30 @@ function Routes() {
       <li class="nav-item">
         <Link class="nav-link" to="/Plataforma"href="#">Plataforma</Link>
       </li>
+      <li>
+      
+
+      </li>
       
     </ul>
 
    
+
+   
   </div>
-  :<div></div>
-}
-      
-      
   
+  :<div>
+
+    
+  </div>
+}
+<div>
+{
+        cookie.get("token")? <button type="button" onClick={Cerrar} class="btn btn-danger"> Cerrar Sesión </button> : <div></div>
+
+    }
+      
+      </div>
   
 </nav>
 
@@ -80,11 +94,7 @@ function Routes() {
         
         
     <footer className=" text-center text-lg-start foter">
-    {
-        cookie.get("token")? <button type="button" onClick={Cerrar} class="btn btn-danger">Cerrar Sesion </button> : <div></div>
-
-    }
-
+    
 <div class="text-center p-3">
   <h4>Información de contacto</h4>
   <ul className="info">

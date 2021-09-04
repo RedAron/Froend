@@ -198,7 +198,7 @@ function Home() {
                         <label class="form-check-label" for="flexRadioDefault1" required>Talento</label > 
                         </div>
                         
-                        <label for="floatingTextarea">año del archivo</label>
+                        <label for="floatingTextarea">Año del archivo</label>
                         <div className="col-sm">
        
         <input type="year" name="fecha" id="fecha" class="form-control" onChange={(s) => inyerar(s.target.value)} />
@@ -220,7 +220,7 @@ function Home() {
         <Modal isOpen={modal2}>
         <ModalHeader>Información</ModalHeader>
         <ModalBody>
-          {loading ? <div className="spinner-border text-primary" role="status"></div>: (hasError? <div>Ocurrio un error</div>
+          {loading ? <div className="spinner-border text-primary" role="status"></div>: (hasError? <div>Ocurrió un error</div>
           :
           (<div className="alert alert-primary">Cargado Correctamente</div>))}
         </ModalBody>
